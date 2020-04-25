@@ -1,14 +1,15 @@
-##Difference between bytes and str
-###bytes
+#Difference between bytes and str
+##bytes
 a = b'h\x65llo'
 print(list(a))
 print(a)
 
-###str
+##str
 a = 'a\u0300 propos'
 print(list(a))
 print(a)
 
+##Decode (transform bytes into strings)
 def to_str(bytes_or_str):
     if isinstance(bytes_or_str, bytes):
         value = bytes_or_str.decode('utf-8')
@@ -19,7 +20,7 @@ def to_str(bytes_or_str):
 print(repr(to_str(b'foo'))) 
 print(repr(to_str('bar')))
 
-
+##Encode (transform strings into bytes)
 def to_bytes(str_or_bytes):
     if isinstance(str_or_bytes, str):
         value = str_or_bytes.encode('utf-8')
@@ -30,6 +31,7 @@ def to_bytes(str_or_bytes):
 print(repr(to_bytes(b'foo')))
 print(repr(to_bytes('bar')))
 
+##using operators with strings and bytes
 print(b'one' + b'two')
 print('one' + 'two')
 
@@ -50,6 +52,7 @@ print("i went %s" % "for a walk")
 print(b'blue %s' % 'red')
 print('red %s' % b'blue')
 
+##writting and reading binary and string data
 with open('data.bin', 'w') as f:
     f.write(b'\xf1\xf2\xf3\xf4\xf5')
 
