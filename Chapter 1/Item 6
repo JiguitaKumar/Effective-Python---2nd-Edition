@@ -1,0 +1,68 @@
+##Multiple assignment
+snack_calories = {
+        'chips': 140,
+        'popcorn': 80,
+        'nuts': 190,
+}
+items = tuple(snack_calories.items())
+print(items)
+print(snack_calories)
+
+help(tuple)
+
+item = ('Peanut butter', 'Jelly')
+first = item[0]
+first
+second = item[1]
+second
+print(first, 'and', second)
+
+items[1]
+
+pair = ('Chocolate', 'Caramel')
+pair[1] = 'Honey'
+
+third, fourth = pair
+print(third, 'and', fourth)
+
+def bubble_sort(a):
+    for _ in range(len(a)):
+        for i in range(1, len(a)):
+            if a[i] < a[i-1]:
+                temp = a[i]
+                a[i] = a[i-1]
+                a[i-1] = temp
+
+names = ['pretzels', 'carrots', 'arugula', 'bacon']
+bubble_sort(names)
+names
+
+for x in names:
+    print(len(x))
+
+for i in range(len(names)):
+    print(len(names[i]))
+
+for i, name in enumerate(names):
+    lenght = len(names[i])
+    print(f'{name} - {lenght}')
+
+def bubbles_sort(a):
+    for _ in range(len(a)):
+        for i in range(1, len(a)):
+            if a[i] < a[i-1]:
+                a[i-1], a[i] = a[i], a[i-1] #swap
+
+names1 = ['pretzels', 'carrots', 'arugula', 'bacon']
+bubbles_sort(names1)
+names1
+
+snacks = [('bacon', 350), ('donut', 240), ('muffin', 190)]
+for i in range(len(snacks)):
+    item = snacks[i]
+    name = item[0]
+    calories = item[1]
+    print(f'#{i+1}: {name} has {calories} calories')
+
+for rank, (name, calories) in enumerate(snacks, 1):
+	print(f'#{rank}: {name} has {calories} calories')
