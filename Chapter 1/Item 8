@@ -1,4 +1,7 @@
-## Using Zip to Process iterators in Parallel
+# Using Zip to Process iterators in Parallel
+
+# A long and repetitive iteration
+
 names = ['Cecilia', 'Lise', 'Marie'] #source list
 counts = [len(n) for n in names] #derived list
 print(counts)
@@ -14,6 +17,9 @@ for i in range(len(names)):
 
 print(longest_name)
 
+
+#Using enumerate actually makes it slightly simpler
+
 for i, name in enumerate(names):
     count = counts[i]
     if count > max_count:
@@ -22,6 +28,9 @@ for i, name in enumerate(names):
 
 print(longest_name)
 
+
+#Using Zip in order to simplify the function
+
 for name, count in zip(names, counts):
     if count > max_count:
         longest_name = name
@@ -29,9 +38,15 @@ for name, count in zip(names, counts):
 
 print(longest_name)
 
+
+#What happens if we have 2 lists with different lenght
+
 names.append('Rosalind')
 for name, count in zip(names, counts):
     print(name)
+
+
+#How to solve it
 
 import itertools
 
