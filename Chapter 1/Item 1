@@ -1,0 +1,7 @@
+##The Zen of Python
+import this
+
+## Python version
+import sys
+print(sys.version_info)
+print(sys.version)
