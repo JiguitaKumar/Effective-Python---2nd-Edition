@@ -1,3 +1,5 @@
+# How the else block works
+
 for i in range(3):
     print('Loop', i)
 else:
@@ -29,6 +31,9 @@ for i in range(2, min(a, b) + 1):
         break
 else:
     print('coprime')
+
+
+#Ways to avoid the else block
 
 def coprime(a, b):
     for i in range(2, min(a,b) + 1):
