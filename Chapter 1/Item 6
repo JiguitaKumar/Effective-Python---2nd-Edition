@@ -1,4 +1,7 @@
-##Multiple assignment
+#Multiple assignment
+
+#By using indexing
+
 snack_calories = {
         'chips': 140,
         'popcorn': 80,
@@ -25,6 +28,9 @@ pair[1] = 'Honey'
 third, fourth = pair
 print(third, 'and', fourth)
 
+
+#Bubble sort
+
 def bubble_sort(a):
     for _ in range(len(a)):
         for i in range(1, len(a)):
@@ -37,6 +43,7 @@ names = ['pretzels', 'carrots', 'arugula', 'bacon']
 bubble_sort(names)
 names
 
+#testing some other functionalities
 for x in names:
     print(len(x))
 
@@ -46,6 +53,9 @@ for i in range(len(names)):
 for i, name in enumerate(names):
     lenght = len(names[i])
     print(f'{name} - {lenght}')
+
+
+#Multiple assignment Unpacking
 
 def bubbles_sort(a):
     for _ in range(len(a)):
