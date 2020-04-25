@@ -1,4 +1,7 @@
-##Enumerate vs range
+#Enumerate vs range
+
+#How range works
+
 from random import randint
 
 random_bits = 0
@@ -15,10 +18,14 @@ for i in range(len(flavor_list)):
     flavor = flavor_list[i]
     print(f'#{i+1}: {flavor}')
 
+#Testing other features
 for i in range(len(flavor_list)):
     flavor = flavor_list[i]
     lenght = len(flavor_list[i])
     print(f'{flavor}: {lenght}')
+
+
+#How to simplify using enumerate
 
 it = enumerate(flavor_list)
 print(next(it))
