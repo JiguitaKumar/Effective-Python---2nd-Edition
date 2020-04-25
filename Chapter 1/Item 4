@@ -1,0 +1,42 @@
+##Helper function
+from urllib.parse import parse_qs
+
+my_values = parse_qs('red=5&blue=0&green=',
+                     keep_blank_values=True)
+print(repr(my_values))
+
+print('Red:    ', my_values.get('red'))
+print('Green:  ', my_values.get('green'))
+print('Opacity:', my_values.get('opacity'))
+
+red = my_values.get('red', [''])[0] or 0
+blue = my_values.get('blue', [''])[0] or 0
+green = my_values.get('green', [''])[0] or 0
+opacity = my_values.get('opacity', [''])[0] or 0
+
+print(f'Red:     {red!r}')
+print(f'Blue:    {blue!r}')
+print(f'Green:   {green!r}')
+print(f'Opacity: {opacity!r}')
+
+red_int = int(my_values.get('red', [''])[0] or 0)
+print(red_int)
+
+red_str = my_values.get('red', [''])
+red1 = int(red_str[0]) if red_str[0] else 0
+print(red1)
+
+green_str = my_values.get('green', [''])
+if green_str[0]:
+    print(int(green_str[0]))
+else:
+    print(0)
+
+def get_first_int(values, key, default=0):
+    found = values.get(key, [''])
+    if found[0]:
+        return int(found[0])
+    return default
+
+get_first_int(my_values, 'green')
+red2 = get_first_int(my_values, 'red')
