@@ -1,0 +1,166 @@
+##Placeholders - Formatting Strings (using the % operator)
+
+a = 0b10111011
+b = 0xc5f
+print('Binary is %d, hex is %d' % (a,b))
+
+key = 'my_var'
+value = 1.234
+formatted = '%-10s = %.2f' % (key, value)
+print(formatted)
+
+reorder = '%-10s = %.2f' % (value, key)
+print(reorder)
+
+reorder_again = '%.2f = %-10s' % (key, value)
+print(reorder_again)
+
+pantry = [
+        ('avocado', 1.25),
+        ('bananas', 2.5),
+        ('cherries', 15)
+]
+for i, (item, count) in enumerate(pantry):
+    print('#%d: %-10s = %.2f' % (i, item, count))
+
+for i, (item, count) in enumerate(pantry):
+    print('#%d: %-10s = %d' % (
+          i + 1,
+          item.title(), #returns the same string with the first character capitalized
+          round(count)))
+
+template = '%s loves food. Watch %s cook!'
+name = 'Max'
+formatted = template % (name, name)
+print(formatted)
+
+name2 = 'brad'
+formatted2 = template % (name2.title(), name2.title())
+print(formatted2)
+
+###placeholders - with dictionary
+
+new_way = '%(key)-10s = %(value).2f' % {
+        'key': key, 'value': value}
+
+reordered = '%(key)-10s = %(value).2f' % {
+        'value': value, 'key': key}
+
+assert new_way == reordered
+
+name = 'Ted'
+template = '%(name)s loves food. Watch %(name)s cook!'
+after = template % {'name': name}
+print(after)
+
+for i, (item, count) in enumerate(pantry):
+    print('#%(loop)d: %(item)-10s = %(count)d' % {
+          'loop': i + 1,
+          'item': item.title(),
+          'count':round(count),
+})
+    
+soup = 'lentil'
+formatted = 'Today\'s soup is %(soup)s.' % {'soup': soup}
+print(formatted)
+
+menu = {
+        'soup': 'lentil',
+        'oyster': 'Kumamoto',
+        'special': 'schnitzel',
+}
+template = ('Today\'s soup is %(soup)s, '
+            'buy one get two %(oyster)s oysters, '
+            'and our special entreé is %(special)s.')
+formatted = template % menu
+print(formatted)
+
+##Built-in function (format)
+a = 1234.5678
+formatted= format(a, ',.2f')
+print(formatted)
+
+b = 'my string'
+formatted = format(b, '^20s')
+print('*', formatted, '*')
+
+##Using {} as a placeholder
+key = 'my_var'
+value = 1.234
+formatted = '{} = {}'.format(key, value)
+print(formatted)
+
+formatted2 = '{:<10} = {:.2f}'.format(key, value)
+print(formatted2)
+
+print('%.2f%%' % 12.5)
+print('{} replaces {{}}'.format(1.23))
+
+formatted = '{1} = {0}'.format(key, value)
+print(formatted)
+
+name = 'George'
+formatted = '{0} loves food. Watch {0} cook!'.format(name)
+print(formatted)
+
+for i, (item, count) in enumerate(pantry):
+    print('#{}: {:<10s} = {}'.format(
+        i + 1,
+        item.title(),
+        round(count)))
+
+formatted = 'the first letter is {menu[oyster][0]!r}'.format(menu=menu)
+print(formatted)
+
+new_template = (
+        'Today\'s soup is {soup}, '
+        'buy one get two {oyster} oysters, '
+        'and our special entreé is {special}.')
+
+new_formatted = new_template.format(
+        soup='lentil',
+        oyster= 'Kumamoto',
+        special= 'schnitzel',
+)
+
+print(new_formatted)
+
+test = (
+        'Today\'s soup is {soup}, '
+        'buy one get two {oyster} oysters, '
+        'and our special entreé is {special}.'). format(
+            soup='lentil',
+            oyster= 'Kumamoto',
+            special= 'schnitzel',
+)
+
+print(test)
+
+##interpolated format strings (F-strings)
+key = 'my_var'
+value = 1.234
+format1 = f'{key} = {value}'
+print(format1)
+
+format2 = f'{key!r:<10} = {value:.2f}'
+print(format2)
+
+format3 = f'{key:<10} = {value:.2f}'
+print(format3)
+
+soup = 'lentil'
+oyster = 'Kumamoto'
+special = 'schnitzel'
+
+format4 = (f'Today\'s soup is {soup}, '
+        f'buy one get two {oyster} oysters, '
+        f'and our special entreé is {special}.')
+
+print(format4)
+
+for i, (item, count) in enumerate(pantry):
+    print(f'#{i+1}: {item.title():<10} = {round(count)}')
+          
+places = 3
+number = 1.23456
+print(f'My number is {number:.{places}f}')
