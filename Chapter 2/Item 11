@@ -1,3 +1,68 @@
-"""
-Work in progress
-"""
+##Item 11 - Slice sequences
+###Slicing methods
+a = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+print('Middle two: ', a[3:5])
+print('All but ends: ', a[1:7])
+
+assert a[0:5] == a[:5]
+assert a[5:len(a)] == a[5:]
+
+len(a)
+a[5:len(a)]
+
+a[:]
+a[:5]
+a[:-1]
+a[4:]
+a[-3:]
+a[2:5]
+a[2:-1]
+a[-3:-1]
+
+first_twenty_items = a[:20]
+last_twenty_items = a[-20:]
+
+a[20]
+
+assert a[-0:] == a[:]
+
+
+###Assignments
+b = a[3:]
+print('Before:    ', b)
+b[1] = 99
+print('After:     ', b)
+print('No change: ', a)
+
+
+###Reassignments
+print('Before ', a)
+a[2:7] = [99, 22, 14]
+print('After ', a)
+
+print('Before', a)
+a[2:3] = [47, 11]
+print('After ', a)
+
+b = a[:]
+assert a == b and b is not a
+
+c = a
+print('Before a', a)
+print('Before c', c)
+a[:] = [101, 102, 103]
+assert a is c
+print('After a', a)
+print('After c', c)
+
+###Test
+g = [10, 20, 30]
+h = [10, 20, 30]
+
+g = h
+print(g)
+print(h)
+g[:] = [23, 45, 56]
+assert g is h
+print(g)
+print(h)
