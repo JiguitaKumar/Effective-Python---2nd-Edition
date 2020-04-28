@@ -1,0 +1,42 @@
+##Item 12 - Striding and Slicing in single expressions
+## Stride = intercalar
+x = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
+odds = x[::2]
+evens = x[1::2]
+y = x[::-1]
+
+print(odds)
+print(evens)
+print(y)
+
+###bugs
+x = b'mongoose'
+y = x[::-1]
+print(y)
+
+x = '寿司'
+y = x[::-1]
+print(y)
+
+w = '寿司'
+x = w.encode('utf-8')
+y = x[::-1]
+z = y.decode('utf-8')
+
+###negative strides
+x = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+x[::2] #select every second item starting at the beginning
+x[::-2] #select every second item starting at the end
+
+x[2::2]
+x[-2::-2]
+x[-2:2:-2]
+x[-2:1:-2]
+x[-2:2:2]
+x[2:2:-2]
+
+###Avoiding the 3 digits
+y = x[::2] #first stride
+print(y)
+z = y[1:-1] #then slice
+print(z)
