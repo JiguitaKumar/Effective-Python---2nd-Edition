@@ -1,0 +1,85 @@
+##Item 14 Sort by complex criteria using key parameter
+"""
+The list built-in type provides a sort method for ordering the items \
+in a list instance based on a variety of criteria
+"""
+
+numbers = [93, 86, 11, 68, 70]
+numbers.sort()
+print(numbers)
+
+###sort method with objects
+class Tool:
+    def __init__(self, name, weight):
+        self.name = name
+        self.weight = weight
+    
+    def __repr__(self):
+        return f'Tool({self.name!r}, {self.weight})'
+
+tools = [
+    Tool('level', 3.5),
+    Tool('hammer', 1.25),
+    Tool('screwdriver', 0.5),
+    Tool('chisel', 0.25),
+]
+
+tools.sort() #doesn't work
+
+print('Unsorted:', repr(tools))
+tools.sort(key = lambda x: x.name) #lambda function
+print('\nSorted:  ', tools) #'\n' leaves 1 blank line
+print('Sorted:\n', tools)
+
+tools.sort(key = lambda y: y.weight)
+print('Sorted:', tools)
+
+#The sorting is case sensitive
+places = ['home', 'work', 'New York', 'Paris']
+places.sort()
+print('Case sensivite:', places)
+
+places.sort(key = lambda z: z.lower())
+print('Case insensitive:', places)
+
+#multiple criteria for sorting
+power_tools = [
+    Tool('sander', 4),
+    Tool('circular saw', 5),
+    Tool('jackhammer', 40),
+    Tool('drill', 4)
+]
+
+saw = (5, 'circular saw')
+jackhammer = (40, 'jackhammer')
+assert not (jackhammer < saw)
+
+drill = (4, 'drill')
+sander = (4, 'sander')
+assert drill[0] == sander [0]
+assert drill[1] < sander[1]
+assert drill < sander
+
+power_tools.sort(key = lambda a: (a.weight, a.name))
+print('Sorted:', power_tools) #ascending
+
+power_tools.sort(key = lambda b: (b.weight, b.name), reverse=True)
+print(power_tools) #descending
+
+power_tools.sort(key = lambda c: (-c.weight, c.name))
+print(power_tools) #mixed
+
+power_tools.sort(key = lambda d: (d.weight, -d.name))
+print(power_tools) #Error
+
+#combining different criteria together
+power_tools.sort(key = lambda e: e.name)
+power_tools.sort(key = lambda f: f.weight, reverse = True)
+print(power_tools)
+
+"""
+Note:
+You can use the multiple sort criteria with as many different \
+types of sort as you want. You just need to make sure you execute \
+them in the opposite order of what you want the final list to contain
+"""
