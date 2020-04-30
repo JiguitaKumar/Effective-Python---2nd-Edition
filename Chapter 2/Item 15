@@ -1,0 +1,150 @@
+##Item 15 - Using dict insertion order
+"""
+in python 3.5 and before, iterating over a dict will return \
+keys in arbitrary order instead of inserted order
+"""
+
+baby_names = {
+    'dog': 'puppy',
+    'cat': 'kitten',
+ }
+
+print(baby_names)
+
+print(list(baby_names.keys()))
+print(list(baby_names.values()))
+print(list(baby_names.items()))
+print(baby_names.popitem()) #Last item inserted
+
+def my_func(**kwargs):
+    for key, value in kwargs.items():
+        print('%s = %s' % (key, value))
+        
+my_func(goose = 'gosling', kangaroo = 'joey')
+
+class MyClass:
+    def __init__(self):
+        self.alligator = 'hatchling'
+        self.elephant = 'calf'
+        
+a = MyClass()
+for key, value in a.__dict__.items():
+    print('%s = %s' % (key, value))
+
+votes = {
+    'otter': 1281,
+    'polar bear': 587,
+    'fox': 863,
+}
+
+def populate_ranks(votes, ranks):
+    names = list(votes.keys())
+    names.sort(key = votes.get, reverse = True)
+    for i, name in enumerate(names, 1):
+        ranks[name] = i
+
+def get_winner(ranks):
+    return next(iter(ranks))
+
+ranks = {}
+populate_ranks(votes, ranks)
+print(ranks)
+winner = get_winner(ranks)
+print(winner)
+
+##collections.abc
+from collections.abc import MutableMapping
+
+class SortedDict(MutableMapping):
+    def __init__(self):
+        self.data = {}
+    
+    def __getitem__(self, key):
+        return self.data[key]
+    
+    def __setitem__(self, key, value):
+        self.data[key] = value
+    
+    def __delitem__(self, key):
+        del self.data[key]
+    
+    def __iter__(self):
+        keys = list(self.data.keys())
+        keys.sort()
+        for key in keys:
+            yield key
+    
+    def __len__(self):
+        return len(self.data)
+
+sorted_ranks = SortedDict()
+populate_ranks(votes, sorted_ranks)
+print(sorted_ranks.data)
+winner = get_winner(sorted_ranks)
+print(winner) #wrong output
+
+#solution 1
+def get_winner(ranks):
+    for name, rank in ranks.items():
+        if rank == 1:
+            return name
+
+winner = get_winner(sorted_ranks)
+print(winner)
+
+#solution 2
+def get_winner(ranks):
+    if not isinstance(ranks, dict):
+        raise TypeError('must provide dict instance')
+    return next(iter(ranks))
+
+get_winner(sorted_ranks)
+
+#solution3
+from typing import Dict, MutableMapping
+
+def populate_ranks(votes: Dict[str, int],
+                   ranks: Dict[str, int]) -> None:
+    names = list(votes.keys())
+    names.sort(key=votes.get, reverse=True)
+    for i, name in enumerate(names, 1):
+        ranks[name] = i
+
+def get_winner(ranks: Dict[str, int]) -> str:
+    return next(iter(ranks))
+
+from typing import Iterator, MutableMapping
+
+class SortedDict(MutableMapping[str, int]):
+    def __init__(self) -> None:
+        self.data: Dict[str, int] = {}
+
+    def __getitem__(self, key: str) -> int:
+        return self.data[key]
+
+    def __setitem__(self, key: str, value: int) -> None:
+        self.data[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.data[key]
+
+    def __iter__(self) -> Iterator[str]:
+        keys = list(self.data.keys())
+        keys.sort()
+        for key in keys:
+            yield key
+
+    def __len__(self) -> int:
+        return len(self.data)
+
+votes = {
+    'otter': 1281,
+    'polar bear': 587,
+    'fox': 863,
+}
+
+sorted_ranks = SortedDict()
+populate_ranks(votes, sorted_ranks)
+print(sorted_ranks.data)
+winner = get_winner(sorted_ranks)
+print(winner)
