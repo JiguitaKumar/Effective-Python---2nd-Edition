@@ -1,0 +1,126 @@
+##Item 16 - get() vs in()
+"""
+Three fundamental operations with dictionaries:
+accessing, assigning and deleting keys
+"""
+
+#access and assign - option 1
+counters = {
+    'pumpernickel': 2,
+    'sourdough': 1,
+}
+
+key = 'wheat'
+if key in counters:
+    count = counters[key]
+else:
+    count = 0
+    
+counters[key] = count + 1
+counters
+
+#access and assign - option 2
+try:
+    count = counters[key]
+except KeyError:
+    count = 0
+    
+counters[key] = count + 1
+
+#using get()
+key1 = 'Baguette' 
+count = counters.get(key1, 0)
+counters[key1] = count + 1
+counters
+
+#other ways using in() - to avoid
+if key not in counters:
+    counters[key] = 0
+counters[key] += 1
+
+if key in counters:
+    counters[key] += 1
+else:
+    counters[key] = 1
+
+try:
+    counters[key] += 1
+except:
+    counters[key] = 1
+
+#more complex lists
+votes = {
+    'white': ['Bob', 'Alice'],
+    'ciabatta': ['Coco', 'Deb'],
+}
+
+key = 'brioche'
+who = 'Elmer'
+
+if key in votes:
+    names = votes[key]
+else:
+    votes[key] = names = []
+
+names.append(who)
+print(votes)
+
+#using KeyError exception in complex lists
+try:
+    names = votes[key]
+except KeyError:
+    votes[key] = names = []
+
+names.append(who)
+votes
+
+#using get() in complex lists
+key = 'brioche'
+who = 'Mia'
+
+names = votes.get(key)
+if names is None:
+    votes[key] = names = []
+names.append(who)
+votes
+
+key = 'pita'
+who = 'Carie'
+
+if(names := votes.get(key)) is None:
+    votes[key] = names = []
+votes[key].append(who)
+
+#using the setdefault() method
+"""
+the setdefault tries to fetch the value of the key provided.
+if the key isn't present, method assigns the default value provided.
+"""
+
+names = votes.setdefault(key, [])
+names.append(who)
+votes
+
+data = {}
+key = 'foo'
+value = []
+data.setdefault(key, value)
+print('Before:', data)
+value.append('hello')
+print('After:', data)
+
+count = counters.setdefault(key, 0)
+counters[key] = count + 1
+counters
+
+#test
+counters[key] = 1
+counters
+count = counters[key]
+counters[key] = count + 1
+counters
+
+key2 = 'bun'
+count = counters.get(key2, 0)
+counters[key2] = count + 1
+counters
