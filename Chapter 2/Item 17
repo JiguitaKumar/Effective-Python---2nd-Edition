@@ -1,0 +1,54 @@
+##Item 17 - defaultdic() vs setdefault()
+#when you didn't create the dictionary
+visits = {
+    'Mexico': {'Tulum', 'Puerto Vallarta'},
+    'Japan': {'Hakone'},
+}
+
+visits.setdefault('France', set()).add('Arles')
+
+if (japan := visits.get('Japan')) is None:
+    vistis['Japan'] = japan = set()
+japan.add('Kyoto')
+
+print(visits)
+
+japan = visits.get('Japan')
+if japan is None:
+    visists['Japan'] = set()
+japan.add('Kyoto')
+print(visits)
+
+#when you create the dictionary
+class Visits:
+    def __init__(self):
+        self.data = {}
+        
+    def add(self, country, city):
+        city_set = self.data.setdefault(country, set())
+        city_set.add(city)
+
+visits = Visits()
+visits.add('Russia', 'Yekaterinburg')
+visits.add('Tanzania', 'Zanzibar')
+print(visits.data)
+
+#test
+russia = visits.data.get('Russia')
+russia.add('Moscow')
+visits.data
+
+#using defaultdict()
+from collections import defaultdict
+
+class Visits:
+    def __init__(self):
+        self.data = defaultdict(set)
+    
+    def add(self, country, city):
+        self.data[country].add(city)
+
+visits = Visits()
+visits.add('England', 'London')
+visits.add('England', 'Bath')
+print(visits.data)
