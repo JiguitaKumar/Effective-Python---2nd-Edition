@@ -26,7 +26,7 @@ def my_function():
     return 3, 4
 
 third, fourth = my_function()
-assert third == 3
+assert third == 3 
 assert fourth == 4
 
 #starred expressions
