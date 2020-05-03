@@ -1,4 +1,4 @@
-#Item 23 - Optional behavior with Keyword arguments
+#Item 23 - Optional behavior with Keyword arguments 
 #pass arguments by position
 def remainder(number, divisor):
     return number % divisor
