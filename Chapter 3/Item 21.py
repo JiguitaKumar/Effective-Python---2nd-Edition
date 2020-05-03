@@ -18,7 +18,7 @@ group = {2, 3, 5, 7}
 sort_priority(numbers, group)
 print(numbers)
 
-#Flag to identify high-priority items
+#Flag to identify high-priority items 
 def sort_priority2(numbers, group):
     found = False
     def helper(x):
