@@ -1,4 +1,4 @@
-#Item 25 - Keyword-only and Positional-only argument
+#Item 25 - Keyword-only and Positional-only argument 
 #simple function
 def safe_division(number, divisor,
                   ignore_overflow,
