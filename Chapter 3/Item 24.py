@@ -1,4 +1,4 @@
-#Item 24 - Using None and docstrings
+#Item 24 - Using None and docstrings 
 #Non-static keyword arguments
 from time import sleep
 from datetime import datetime
