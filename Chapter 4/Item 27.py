@@ -24,7 +24,7 @@ even_squares = [x**2 for x in a if x % 2 == 0]
 print(even_squares)
 assert even_squares == list(alt)
 
-#Dictionaries and sets
+#Dictionaries and sets 
 even_squares_dict = {x: x**2 for x in a if x % 2 == 0}
 threes_cubed_set = {x**3 for x in a if x % 3 == 0}
 print(even_squares_dict)
