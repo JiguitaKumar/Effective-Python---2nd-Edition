@@ -16,7 +16,7 @@ print(squared)
 squared2 = [x**2 for row in matrix for x in row]
 print(squared2)
 
-#more than 2 subexpressions (too long)
+#more than 2 subexpressions (too long) 
 my_lists = [
     [[1, 2, 3], [4, 5, 6]],
     [[7, 8, 9], [10, 11, 12]],
