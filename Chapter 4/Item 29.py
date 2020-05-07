@@ -24,7 +24,7 @@ print(result)
 #same logic using dict comprehension
 found = {name: get_batches(stock.get(name, 0), 8)
          for name in order
-         if get_batches(stock.get(name, 0), 8)} #repeats code
+         if get_batches(stock.get(name, 0), 8)} #repeats code 
 found
 
 has_bug = {name: get_batches(stock.get(name, 0), 4)
