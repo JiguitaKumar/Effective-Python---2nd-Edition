@@ -15,7 +15,7 @@ address = 'Four score and seven years ago our fathers brought forth on \
 result = index_words(address)
 print(result[:10])
 
-#a better way to write the function (generator - yield)
+#a better way to write the function (generator - yield) 
 def index_words_iter(text):
     if text:
         yield 0
