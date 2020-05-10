@@ -26,7 +26,7 @@ with open(path, 'w') as f:
 
 it = read_visits('my_numbers.txt')
 percentages = normalize(it)
-print(percentages) #doesn't work - exhausted
+print(percentages) #doesn't work - exhausted 
 
 it = read_visits('my_numbers.txt')
 print(list(it))
