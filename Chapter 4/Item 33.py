@@ -26,7 +26,7 @@ def run(func):
 
 run(animate)
 
-#the solution (yield from)
+#the solution (yield from) 
 def animate_composed():
     yield from move(4, 5.0)
     yield from pause(3)
