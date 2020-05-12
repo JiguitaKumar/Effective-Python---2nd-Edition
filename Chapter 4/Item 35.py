@@ -1,5 +1,5 @@
 #Item 35 - State Transitions in generators
-#using the Throw method
+#using the Throw method 
 class MyError(Exception):
     pass
 
